@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <style>
+        .container{
+            padding-top: 200px;
+        }
+    </style>
+</head>
+<body>
+<div align="center"  class="container">
+    <h1>EDIT</h1>
+    <hr>
+
+    <form th:action="@{/index}" th:object="${newPerson}"
+          th:method="POST">
+
+        <input type="hidden" th:field="*{id}"/>
+        <label for="name">Name</label>
+        <input type="text" th:field="*{name}"
+               placeholder="Name" id="name" class="form-control mb-4 col-4">
+        <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error Name</div>
+
+        <label for="age">Age</label>
+        <input type="text" id="age" th:field="*{age}"
+               placeholder="Age" class="form-control mb-4 col-4">
+        <div style="color: red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Error Name</div>
+
+        <label for="email">Email</label>
+        <input type="text" id = "email" th:field="*{email}"
+               placeholder="Email" class="form-control mb-4 col-4">
+        <div style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error Name</div>
+
+        <button type="submit" class="btn btn-info col-2"> Edit Person</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "@{/index}"> Back to Person List</a>
+</div>
+</body>
+</html>
